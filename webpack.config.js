@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
+var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+
 // Is the current build a development build
 const IS_DEV = (process.env.NODE_ENV === 'dev');
 
@@ -42,10 +44,7 @@ module.exports = {
       title: appHtmlTitle
     }),
 
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
-    })
+    new FriendlyErrorsWebpackPlugin()
   ],
   module: {
     rules: [

@@ -6,6 +6,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const webpackConfig = require('./webpack.config');
 
+const PATHS = {
+  app: path.join(__dirname, 'src'),
+  build: path.join(__dirname, 'dist')
+};
+
 module.exports = merge(webpackConfig, {
   devtool: 'source-map',
 
