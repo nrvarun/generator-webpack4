@@ -20,11 +20,8 @@ module.exports = merge(webpackConfig, {
       poll: 1000
     },
     stats: {
-      errors: true,
-      errorDetails: true,
-      performance: true,
-      warnings: true,
-      children: false
+        errors: true,
+        warnings: true
     }
   }
 
