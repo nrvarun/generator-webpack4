@@ -15,7 +15,6 @@ module.exports = merge(webpackConfig, {
     contentBase: path.resolve(__dirname, './src'),
     open: true,
     port: 8080,
-    hot: true,
     watchOptions: {
       poll: 1000
     },
