@@ -3,17 +3,16 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
-var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 // Is the current build a development build
 const IS_DEV = (process.env.NODE_ENV === 'dev');
 
 const dirNode = 'node_modules';
-const dirApp = path.join(__dirname, 'src/js/');
-const dirImgs = path.join(__dirname, 'src/images');
+const dirApp = path.join(__dirname, 'src/js');
+const dirImgs = path.join(__dirname, 'src/img');
 const dirStyles = path.join(__dirname, 'src/css');
-
-const appHtmlTitle = 'Webpack Boilerplate';
 
 /**
  * Webpack Configuration
@@ -38,12 +37,16 @@ module.exports = {
     new webpack.DefinePlugin({
       IS_DEV
     }),
-
+    new StyleLintPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/index.pug'),
-      title: appHtmlTitle
+      title: 'Homepage',
+      chunks: ['main']
     }),
-
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: '[id].css'
+    }),
     new FriendlyErrorsWebpackPlugin()
   ],
   module: {
@@ -81,38 +84,11 @@ module.exports = {
       // CSS / SASS
       {
         test: /\.scss/,
-        use: IS_DEV ?
+        exclude: /(node_modules)/,
+        use:
           [
-            MiniCssExtractPlugin.loader,
-            // 'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: IS_DEV
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                autoprefixer: {
-                  browsers: ['last 2 versions']
-                },
-                plugins: () => [
-                  autoprefixer
-                ]
-              }
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: IS_DEV,
-                includePaths: [dirStyles]
-              }
-            }
-          ]
-          : [
-            MiniCssExtractPlugin.loader,
-            // 'style-loader',
+            // MiniCssExtractPlugin.loader,
+            'style-loader',
             {
               loader: 'css-loader',
               options: {
@@ -139,6 +115,36 @@ module.exports = {
               }
             }
           ]
+          // :
+          // [
+          //   MiniCssExtractPlugin.loader,
+          //   // 'style-loader',
+          //   {
+          //     loader: 'css-loader',
+          //     options: {
+          //       sourceMap: IS_DEV
+          //     }
+          //   },
+          //   {
+          //     loader: 'postcss-loader',
+          //     options: {
+          //       sourceMap: IS_DEV,
+          //       autoprefixer: {
+          //         browsers: ['last 2 versions']
+          //       },
+          //       plugins: () => [
+          //         autoprefixer
+          //       ]
+          //     }
+          //   },
+          //   {
+          //     loader: 'sass-loader',
+          //     options: {
+          //       sourceMap: IS_DEV,
+          //       includePaths: [dirStyles]
+          //     }
+          //   }
+          // ]
       },
 
       {
@@ -162,54 +168,42 @@ module.exports = {
       },
 
       // IMAGES
-      //   {
-      //     test: /\.(png|jpg|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      //     use: [
-      //       {
-      //         loader: 'url-loader',
-      //         options: {
-      //           limit: 10000,
-      //           name: 'images/[name].[ext]'
-      //         }
-      //       }
-      //     ]
-      //   },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        exclude: /node_modules/,
-        loaders: ['file-loader?context=src/images/&name=images/[path][name].[ext]', { // images loader
-          loader: 'image-webpack-loader',
-          query: {
-            mozjpeg: {
-              progressive: true
-            },
-            gifsicle: {
-              interlaced: false
-            },
-            optipng: {
-              optimizationLevel: 4
-            },
-            pngquant: {
-              quality: '75-90',
-              speed: 3
-            },
-            svgo: {
-              plugins: [
-                {
-                  removeViewBox: false
-                },
-                {
-                  removeEmptyAttrs: false
-                }
-              ]
-            },
-            // Specifying webp here will create a WEBP version of your JPG/PNG images
-            webp: {
-              quality: 75
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 10000,
+              name: 'img/[name].[ext]',
+              publicPath: '../'
+            }
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75
+              }
             }
           }
-        }],
-        include: __dirname
+        ]
       },
 
       // FONTS

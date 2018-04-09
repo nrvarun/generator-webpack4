@@ -1,36 +1,38 @@
-a{
-	display: block;
-	text-decoration: none;
+a {
+  display: block;
+  text-decoration: none;
 
-	&:hover{
-		text-decoration: none !important;
-	}
+  &:hover {
+    text-decoration: none !important;
+  }
 }
 
-/*Other styles*/
+/* Other styles */
 
-*{
-	outline: none !important;
+* {
+  outline: none !important;
 }
 
-ul, li{
-	list-style: none;
-	padding: 0;
+ul,
+li {
+  list-style: none;
+  padding: 0;
 }
 
-/*END: Other styles*/
+/* END: Other styles */
 
-.caps{
-	text-transform: uppercase;
+.caps {
+  text-transform: uppercase;
 }
 
-textarea{
-	resize: none;
+textarea {
+  resize: none;
 }
 
-/*Remove the following styles after adding reset.css file*/
-body{
-	margin: 0;
-	//background: $lighter-gray !important;
+/* Remove the following styles after adding reset.css file */
+body {
+  margin: 0;
+  //background: $lighter-gray !important;
 }
-/*END: Remove the following styles after adding reset.css file*/
+
+/* END: Remove the following styles after adding reset.css file */

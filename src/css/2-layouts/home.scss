@@ -1,16 +1,44 @@
 //Home Styles
 
 .home-list {
-	li {
-		display: inline-block;
-		padding: 5px;
-		color: $white;
-		margin-bottom: 10px;
-		background-color: #663399;
-		box-shadow: 0 0 1px #000000;
-	}
+  li {
+    display: inline-block;
+    padding: 5px;
+    color: $w;
+    margin-bottom: 10px;
+    background-color: #663399;
+    box-shadow: 0 0 1px #000000;
+  }
 }
 
 .home-list-item {
-	text-transform: capitalize;
+  text-transform: capitalize;
+}
+
+.content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: $w;
+
+  h1 {
+    position: relative;
+    z-index: 20;
+    font-size: 50px;
+    text-transform: capitalize;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #161515;
+    opacity: 0.9;
+  }
 }

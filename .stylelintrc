@@ -1,27 +1,24 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": [
+        "stylelint-scss",
+        "stylelint-config-standard"
+  ],
   "rules": {
-    "property-no-unknown": [
-      true,
-      {
-        "ignoreProperties": [
-          "font-range",
-          "min-font-size",
-          "max-font-size",
-          "lower-font-range",
-          "upper-font-range",
-          "line-height-range",
-          "min-line-height",
-          "max-line-height",
-          "lower-line-height-range",
-          "upper-line-height-range",
-          "letter-spacing-range",
-          "min-letter-spacing",
-          "max-letter-spacing",
-          "lower-letter-spacing-range",
-          "upper-letter-spacing-range"
-        ]
-      }
-    ]
+    "block-closing-brace-empty-line-before": null,
+    "block-opening-brace-space-before": "always",
+    "color-hex-length": "long",
+    "color-named": "never",
+    "function-parentheses-space-inside": "never",
+    "function-url-quotes": "always",
+    "indentation": 2,
+    "max-empty-lines": 2,
+    "media-query-list-comma-space-after": "always",
+    "rule-empty-line-before": ["always", {
+      "except": ["first-nested"],
+      "ignore": ["after-comment"]
+    }],
+    "value-list-comma-newline-after": "never-multi-line",
+    "value-list-comma-newline-before": "never-multi-line",
+	"value-list-comma-space-after": "always"
   }
 }
