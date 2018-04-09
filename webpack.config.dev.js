@@ -29,18 +29,5 @@ module.exports = merge(webpackConfig, {
       errors: true,
       warnings: true
     }
-  },
-  resolve: {
-    // options for resolving module requests
-    // (does not apply to resolving to loaders)
-
-    modules: [
-      'node_modules',
-      path.resolve(__dirname, 'src')
-    ],
-    // directories where to look for modules
-
-    extensions: ['.js', '.json', '.jsx', '.css']
-    // extensions that are used
   }
 });

@@ -87,8 +87,7 @@ module.exports = {
         exclude: /(node_modules)/,
         use:
           [
-            // MiniCssExtractPlugin.loader,
-            'style-loader',
+            MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
               options: {
@@ -115,36 +114,6 @@ module.exports = {
               }
             }
           ]
-          // :
-          // [
-          //   MiniCssExtractPlugin.loader,
-          //   // 'style-loader',
-          //   {
-          //     loader: 'css-loader',
-          //     options: {
-          //       sourceMap: IS_DEV
-          //     }
-          //   },
-          //   {
-          //     loader: 'postcss-loader',
-          //     options: {
-          //       sourceMap: IS_DEV,
-          //       autoprefixer: {
-          //         browsers: ['last 2 versions']
-          //       },
-          //       plugins: () => [
-          //         autoprefixer
-          //       ]
-          //     }
-          //   },
-          //   {
-          //     loader: 'sass-loader',
-          //     options: {
-          //       sourceMap: IS_DEV,
-          //       includePaths: [dirStyles]
-          //     }
-          //   }
-          // ]
       },
 
       {
