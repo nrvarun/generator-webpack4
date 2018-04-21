@@ -8,3 +8,5 @@ import '../css/main.scss';
 // ================================
 // START YOUR APP HERE
 // ================================
+
+console.log('Webpack 4 is sweet');

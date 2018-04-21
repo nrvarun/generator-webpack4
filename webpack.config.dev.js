@@ -14,6 +14,7 @@ module.exports = merge(webpackConfig, {
     pathinfo: true,
     publicPath: '/',
     filename: 'js/[name].js',
+    sourceMapFilename: '[file].map',
     path: PATHS.build
   },
   devServer: {
@@ -23,7 +24,8 @@ module.exports = merge(webpackConfig, {
     quiet: true,
     // hot: true,
     watchOptions: {
-      poll: 1000
+      poll: 1000,
+      ignored: /node_modules/
     },
     stats: {
       errors: true,

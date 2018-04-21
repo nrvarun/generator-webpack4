@@ -183,7 +183,8 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'fonts/[name].[ext]'
+              name: 'fonts/[name].[ext]',
+              publicPath: '../'
             }
           }
         ]
