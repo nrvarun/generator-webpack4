@@ -20,6 +20,7 @@ module.exports = merge(webpackConfig, {
   devServer: {
     contentBase: path.resolve(__dirname, './src'),
     open: true,
+    overlay: true,
     // port: 8080,
     quiet: true,
     // hot: true,
